@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="sample03.BookDaoImpl" id="dao" />
+	
+	<bean class="sample03.BookVo" id="vo">
+		<constructor-arg value="a" />
+		<constructor-arg value="b" />
+		<constructor-arg value="1000" />
+		<constructor-arg value="d" />
+	</bean>
+
+	<bean class="sample03.BookController" id="controller">
+		<constructor-arg ref="dao" />
+		<constructor-arg ref="vo" />
+	</bean>
+
+</beans>
