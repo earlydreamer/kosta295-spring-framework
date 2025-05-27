@@ -1,5 +1,8 @@
 package service;
 
+import org.springframework.stereotype.Service;
+
+@Service("target")
 public class MemberServiceImpl implements MemberService {
 
 	@Override

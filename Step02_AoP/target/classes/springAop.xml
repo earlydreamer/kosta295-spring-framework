@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<!-- 객체생성  -->
+<bean class="service.MemberServiceImpl" id = "target"/>
+<bean class="service.GoodsService" id = "target-goods"/>
+
+<bean class="advice.TimerAdvice" id = "advice"/>
+
+<!-- aop설정 -->
+<aop:config proxy-target-class="false"> <!-- proxy-target-class 옵션은 CGLIB 사용 여부에 대한 옵션 -->
+	<aop:aspect ref = "advice">
+		<aop:around method="around" pointcut="execution(* service.*.* (..))"/>
+	</aop:aspect>
+	
+</aop:config>
+
+
+
+
+</beans>

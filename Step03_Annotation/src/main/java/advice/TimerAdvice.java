@@ -1,6 +1,8 @@
 package advice;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -11,11 +13,12 @@ import org.springframework.util.StopWatch;
  * @author kosta
  */
 
-
-@Component
+@Aspect //AOP의 공통관심사항
+@Component("advice")
 public class TimerAdvice {
 	
 	//사전-사후처리
+	@Around ("execution(* service.*.* (..))") // pointcut 설정
 	public Object around(ProceedingJoinPoint joinpoint) throws Throwable{
 		String methodname = joinpoint.getSignature().getName();
 		System.out.println(methodname+"호출전");
