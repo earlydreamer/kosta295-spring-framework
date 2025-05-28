@@ -25,5 +25,16 @@ public class GlobalExceptionAdvice {
 		
 	}
 	
+	@ExceptionHandler({BasicException.class})
+	public ModelAndView error3(BasicException e) {
+		log.error("error3{}",e.getErrorInfo().getMsg());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("error/basic-error");
+		mv.addObject("msg",e.getErrorInfo().getMsg());
+		mv.addObject("status",e.getErrorInfo().getMsg());
+		mv.addObject("errorInfo",e.getErrorInfo());
+		return mv;
+	}
+	
 
 }
