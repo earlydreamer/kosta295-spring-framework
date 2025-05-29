@@ -6,21 +6,22 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import web.mvc.dto.ProductDTO;
 
-@Component
+@Repository
 public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	List<ProductDTO> productDtoList;
 	
-	@PostConstruct
-	public void a() {
-		System.out.println("tkdl = " + productDtoList.size());
-		System.out.println("productDtoList = " + productDtoList);
-	}
+//	@PostConstruct
+//	public void a() {
+//		System.out.println("tkdl = " + productDtoList.size());
+//		System.out.println("productDtoList = " + productDtoList);
+//	}
 
 	@Override
 	public List<ProductDTO> select() {
@@ -50,7 +51,17 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public int update(ProductDTO dto) {
-		productDtoList.remove(dto);
+		int count = -1;
+		for (ProductDTO curdto : productDtoList) {
+			count++;
+			System.out.println("index="+count);
+			if (curdto.getCode() == null)
+				continue;
+			else if (curdto.getCode().equals(dto.getCode())) {
+				productDtoList.remove(count);
+				break;
+			}
+		}
 		productDtoList.add(dto);
 		return 0;
 	}

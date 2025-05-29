@@ -1,8 +1,7 @@
 package web.mvc.dto;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -15,10 +14,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class ProductDTO {
    private String code;
    private String name;
    private int price;
    private String detail;
+   
+
    
 }
